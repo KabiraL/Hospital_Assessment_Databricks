@@ -1,6 +1,6 @@
 # What makes a high-value hospital?
 #### CMS star ratings don't tell the whole story. The best-value providers are efficient exceptions that star ratings may miss, and only the cost half of value can be reliably predicted.
-#### A Medicare hospital value analysis in Python and Tableau, scoring ~5,000 hospitals from 7 public CMS datasets to find which deliver higher outcomes at lower cost. The analysis also shows what, if anything, sets them apart. Mortality, readmission, safety, spending, effectiveness, and patient experience data were analyzed to identify high-value providers.
+#### A Medicare hospital value analysis in SQL, Python, Databricks, and Tableau, scoring ~5,000 hospitals from 7 public CMS datasets to find which deliver higher outcomes at lower cost. The analysis also shows what, if anything, sets them apart. Mortality, readmission, safety, spending, effectiveness, and patient experience data were analyzed to identify high-value providers.
 
 <hr style="border:2px solid gray">
 
