@@ -71,9 +71,9 @@ A deliberate design choice I made was scoring outcomes on clinical measures only
 
 <h3>Regression coefficients</h3>
 
-<img src="Data/outcomes_coef_plot.png" alt="What moves a hospital's clinical-outcome score" width="700">
+<img src="https://github.com/KabiraL/Hospital_Assessment/blob/1c1bd16b978e0e146a5bd9dd70f543eaacef9405/Data/outcomes_coef_plot.png" alt="What moves a hospital's clinical-outcome score" width="700">
 
-<img src="Data/cost_coef_plot.png" alt="What moves a hospital's per-episode cost" width="700">
+<img src="https://github.com/KabiraL/Hospital_Assessment/blob/1c1bd16b978e0e146a5bd9dd70f543eaacef9405/Data/cost_coef_plot.png" alt="What moves a hospital's per-episode cost" width="700">
 
 <p><em>Standardized OLS coefficients with 95% confidence intervals. The effects are real but, for outcomes, collectively modest (~13% of variation explained).</em></p>
 
@@ -81,7 +81,7 @@ A deliberate design choice I made was scoring outcomes on clinical measures only
 
 <p>The first model tried to predict the high-value combination (high outcome <b>and</b> low cost) directly and couldn't. The model had about 42% precision on held-out data, capped by the weak outcome dimension. Rebuilding it to predict <b>low cost alone</b> succeeded. It achieved  approximately 84% precision at a 0.65 probability threshold on the locked test set. </p>
 
-<img src="Data/cost_permutation_importance.png" alt="Low-cost model permutation importance" width="700">
+<img src="https://github.com/KabiraL/Hospital_Assessment/blob/1c1bd16b978e0e146a5bd9dd70f543eaacef9405/Data/cost_permutation_importance.png" alt="Low-cost model permutation importance" width="700">
 
 <p><em>Permutation importance on held-out data: ED efficiency, size, and region carry the low-cost model.</em></p>
 
@@ -96,11 +96,10 @@ A deliberate design choice I made was scoring outcomes on clinical measures only
 <h3>Repository structure</h3>
 
 ```
-Hospital_Assessment/
-├── Notebooks/
-│   ├── Hospital_Scoring.ipynb
-│   └── Hospital_Analysis.ipynb
-├── Data/                                  # cleaned datasets and figures
+Hospital_Assessment_Databricks/
+├── Hospital Data SQL Analysis.ipynb
+├── Hospital_Analysis.ipynb
+├── Data/                                  # cleaned dataset
 ├── Hospital_Value_Executive_Deck.pdf      # executive summary deck
 └── README.md
 ```
