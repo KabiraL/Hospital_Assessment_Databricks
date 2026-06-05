@@ -33,6 +33,7 @@ CMS star ratings capture patient experience and hospital operations but miss hid
 </div>
 
 High-value hidden hospitals, mapped nationwide.
+
 **[Explore the interactive dashboard of all high-value hospitals →](https://public.tableau.com/app/profile/leah.kabira/viz/HospitalAssessmentHighValue/HighValueHospitals)**
 
 Value tilts modestly by region and ownership, but variation within every group is large, so the map shows where to look, not a guarantee.
@@ -119,7 +120,7 @@ Seven public datasets from the [CMS Provider Data Catalog — Hospitals](https:/
 - [Timely & effective care (138,129 observations)](https://data.cms.gov/provider-data/dataset/yv7e-xc69)
 - [General hospital information (5,426 observations)](https://data.cms.gov/provider-data/dataset/xubh-q36u)
 
-**[View the data dictionary →] (https://github.com/KabiraL/Hospital_Assessment_Databricks/blob/9e9ec77f594bcc481319414a84e8faca621f35a5/Data/Data%20Dictionary%20of%20Predictors.pdf)**
+**[View the data dictionary →](https://github.com/KabiraL/Hospital_Assessment_Databricks/blob/9e9ec77f594bcc481319414a84e8faca621f35a5/Data/Data%20Dictionary%20of%20Predictors.pdf)**
 
 
 <img width="900" alt="CMS data model" src="https://github.com/user-attachments/assets/bf6614d4-869b-47a1-8953-bfca8882b41e" />
