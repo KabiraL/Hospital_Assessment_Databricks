@@ -42,7 +42,7 @@ Healthcare affordability is a top domestic concern for Americans, and "value" (o
 
 Readers can look up any hospital on Medicare's official consumer tool, [Care Compare](https://www.medicare.gov/care-compare/). This provides a comprehensive list of hospitals with their overall star ratings and patient survey results.
 
-**[View the executive presentation →](https://github.com/KabiraL/Hospital_Assessment/blob/81854c4151c76c7ed90c18ea1a8a14ea67eccc27/Hospital_Value_Executive_Deck.pdf)**
+**[View the executive presentation →](https://github.com/KabiraL/Hospital_Assessment_Databricks/blob/c1122a175de48d0bcc391070dafb70865070b042/Hospital_Value_Executive_Deck.pdf)**
 
 Full methodology and model diagnostics are in the notebooks below.
 
