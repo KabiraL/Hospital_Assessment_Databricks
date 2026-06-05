@@ -9,7 +9,7 @@
 #### Answer: Clinical outcomes and cost are only weakly linked. You may or may not see better outcomes when costs increase so the genuinely high-value hospitals (above-median outcomes at below-median cost) are off-trend exceptions. They can't be predicted from operational, patient-experience, or structural data because that data captures how a hospital is run more than how its patients fare. What **can** be predicted is cost on its own. A screening model flags likely low-cost hospitals with about 84% precision. The official CMS star ratings, which never factor in cost, miss roughly two in five high-value hospitals.
 
 <div align="center">
-<img width="900" alt="Outcome/Cost Scatterplot" src="https://github.com/KabiraL/Hospital_Assessment/blob/f0f573b86dcb2bc78c32846868883a2d6c56cc22/Data/outcome_cost_scatter.png" />
+<img width="900" alt="Outcome/Cost Scatterplot" src="https://github.com/KabiraL/Hospital_Assessment_Databricks/blob/9e9ec77f594bcc481319414a84e8faca621f35a5/Data/outcome_cost_scatter.png" />
 </div>
 
 Each dot is a hospital, plotted by clinical outcome and cost. The high-value group (higher outcomes at lower cost in the lower right) is the one we are concerned about.
@@ -22,14 +22,14 @@ Each dot is a hospital, plotted by clinical outcome and cost. The high-value gro
 CMS star ratings capture patient experience and hospital operations but miss hidden value. Comparing to the official CMS 1–5 star ratings, this cost-aware model agrees with the ratings on ~70% of hospitals, as well as surfaces value the stars can't see. There are 216 high-value hospitals (about 2 in 5 of all high-value hospitals) which rated only 1–3 stars because the star system never weighs cost. Conversely, 61% of top-rated (4–5 star) hospitals don't meet the high value standard once cost is counted.
 
 <div align="center">
-<img width="900" alt="Value/Star Matrix" src="https://github.com/KabiraL/Hospital_Assessment/blob/a556093f53f05d51c5dd3f2682b6e6d91e6f8ae7/Data/value_star_matrix.png" />
+<img width="900" alt="Value/Star Matrix" src="https://github.com/KabiraL/Hospital_Assessment_Databricks/blob/9e9ec77f594bcc481319414a84e8faca621f35a5/Data/value_star_matrix.png" />
 </div>
 
 #### "Hidden value" (high-value hospitals the stars underrate) and "Reputation premium" (top-rated hospitals that aren't high value) are exactly the cells star ratings alone can't reveal.
 
 #### Where the hidden high-value hospitals are
 <div align="center">
-<img width="900" alt="Hidden Value Map" src="https://github.com/KabiraL/Hospital_Assessment/blob/7f4035f45a2b91400113aee7b9d7be302ac4746d/Data/hidden_value_map_green.png" />
+<img width="900" alt="Hidden Value Map" src="https://github.com/KabiraL/Hospital_Assessment_Databricks/blob/9e9ec77f594bcc481319414a84e8faca621f35a5/Data/hidden_value_map_green.png" />
 </div>
 
 High-value hidden hospitals, mapped nationwide.
@@ -71,9 +71,9 @@ A deliberate design choice I made was scoring outcomes on clinical measures only
 
 <h3>Regression coefficients</h3>
 
-<img src="https://github.com/KabiraL/Hospital_Assessment/blob/1c1bd16b978e0e146a5bd9dd70f543eaacef9405/Data/outcomes_coef_plot.png" alt="What moves a hospital's clinical-outcome score" width="700">
+<img src="https://github.com/KabiraL/Hospital_Assessment_Databricks/blob/9e9ec77f594bcc481319414a84e8faca621f35a5/Data/outcomes_coef_plot.png" alt="What moves a hospital's clinical-outcome score" width="700">
 
-<img src="https://github.com/KabiraL/Hospital_Assessment/blob/1c1bd16b978e0e146a5bd9dd70f543eaacef9405/Data/cost_coef_plot.png" alt="What moves a hospital's per-episode cost" width="700">
+<img src="https://github.com/KabiraL/Hospital_Assessment_Databricks/blob/9e9ec77f594bcc481319414a84e8faca621f35a5/Data/cost_coef_plot.png" alt="What moves a hospital's per-episode cost" width="700">
 
 <p><em>Standardized OLS coefficients with 95% confidence intervals. The effects are real but, for outcomes, collectively modest (~13% of variation explained).</em></p>
 
@@ -81,7 +81,7 @@ A deliberate design choice I made was scoring outcomes on clinical measures only
 
 <p>The first model tried to predict the high-value combination (high outcome <b>and</b> low cost) directly and couldn't. The model had about 42% precision on held-out data, capped by the weak outcome dimension. Rebuilding it to predict <b>low cost alone</b> succeeded. It achieved  approximately 84% precision at a 0.65 probability threshold on the locked test set. </p>
 
-<img src="https://github.com/KabiraL/Hospital_Assessment/blob/1c1bd16b978e0e146a5bd9dd70f543eaacef9405/Data/cost_permutation_importance.png" alt="Low-cost model permutation importance" width="700">
+<img src="https://github.com/KabiraL/Hospital_Assessment_Databricks/blob/9e9ec77f594bcc481319414a84e8faca621f35a5/Data/cost_permutation_importance.png" alt="Low-cost model permutation importance" width="700">
 
 <p><em>Permutation importance on held-out data: ED efficiency, size, and region carry the low-cost model.</em></p>
 
@@ -118,6 +118,8 @@ Seven public datasets from the [CMS Provider Data Catalog — Hospitals](https:/
 - [HCAHPS patient survey (325,652 observations)](https://data.cms.gov/provider-data/dataset/dgck-syfz)
 - [Timely & effective care (138,129 observations)](https://data.cms.gov/provider-data/dataset/yv7e-xc69)
 - [General hospital information (5,426 observations)](https://data.cms.gov/provider-data/dataset/xubh-q36u)
+
+**[View the data dictionary →] (https://github.com/KabiraL/Hospital_Assessment_Databricks/blob/9e9ec77f594bcc481319414a84e8faca621f35a5/Data/Data%20Dictionary%20of%20Predictors.pdf)**
 
 
 <img width="900" alt="CMS data model" src="https://github.com/user-attachments/assets/bf6614d4-869b-47a1-8953-bfca8882b41e" />
