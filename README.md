@@ -99,7 +99,7 @@ A deliberate design choice I made was scoring outcomes on clinical measures only
 Hospital_Assessment_Databricks/
 ├── Hospital Data SQL Analysis.ipynb
 ├── Hospital_Analysis.ipynb
-├── Data/                                  # cleaned dataset
+├── Data/                                  # cleaned datasets, images, data dictionary
 ├── Hospital_Value_Executive_Deck.pdf      # executive summary deck
 └── README.md
 ```
@@ -111,18 +111,29 @@ Hospital_Assessment_Databricks/
 
 Seven public datasets from the [CMS Provider Data Catalog — Hospitals](https://data.cms.gov/provider-data/topics/hospitals), covering ~5,000 hospitals:
 
-- [Complications & deaths](https://data.cms.gov/provider-data/dataset/ynj2-r877)
-- [Unplanned hospital visits](https://data.cms.gov/provider-data/dataset/632h-zaca)
-- [Healthcare-associated infections](https://data.cms.gov/provider-data/dataset/77hc-ibv8)
-- [Medicare hospital spending by claim](https://data.cms.gov/provider-data/dataset/nrth-mfg3)
-- [HCAHPS patient survey](https://data.cms.gov/provider-data/dataset/dgck-syfz)
-- [Timely & effective care](https://data.cms.gov/provider-data/dataset/yv7e-xc69)
-- [General hospital information](https://data.cms.gov/provider-data/dataset/xubh-q36u)
+- [Complications & deaths (95,780 observations)](https://data.cms.gov/provider-data/dataset/ynj2-r877)
+- [Unplanned hospital visits (67,046 observations)](https://data.cms.gov/provider-data/dataset/632h-zaca)
+- [Healthcare-associated infections (172,404 observations)](https://data.cms.gov/provider-data/dataset/77hc-ibv8)
+- [Medicare hospital spending by claim (63,646 observations)](https://data.cms.gov/provider-data/dataset/nrth-mfg3)
+- [HCAHPS patient survey (325,652 observations)](https://data.cms.gov/provider-data/dataset/dgck-syfz)
+- [Timely & effective care (138,129 observations)](https://data.cms.gov/provider-data/dataset/yv7e-xc69)
+- [General hospital information (5,426 observations)](https://data.cms.gov/provider-data/dataset/xubh-q36u)
 
 
 <img width="900" alt="CMS data model" src="https://github.com/user-attachments/assets/bf6614d4-869b-47a1-8953-bfca8882b41e" />
 
 The seven CMS source datasets and the fields drawn from each.
+
+### Issues
+
+There were data quality issues with 8 instances of Facility IDs having two completely different hospitals assigned to each Facility ID in the General hospital information dataset. This error was discovered late in the analysis, as the original Python code had automatically dropped the second Facility ID during analysis. The error was left unresolved owing to time constraints. Because so few hospitals were involved, I believe that the analyses are sound in spite of this error.
+
+### If there was more time ...
+
+- I would add additional predictors from the Timely & effective care dataset to see if they contributed to strengthening the models.
+- I would also add more predictors from Complications & deaths, Unplanned hospital visits, and Healthcare-associated infections datasets to the Outcomes measure to see if it materially shifted.
+- All potentially-relevant predictors were used from the HCAHPS patient survey and General hospital information datasets.
+- It could also be interesting to explore other CMS datasets to see if any of them hold potential future predictors.
 
 </details>
 
