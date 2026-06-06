@@ -140,4 +140,4 @@ There were data quality issues with 8 instances of Facility IDs having two compl
 
 </details>
 
-By Leah Kabira · LinkedIn · GitHub
+By Leah Kabira · [LinkedIn](https://linkedin.com/in/leahkabira)
