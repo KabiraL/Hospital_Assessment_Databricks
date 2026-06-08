@@ -135,7 +135,7 @@ Seven public datasets from the [CMS Provider Data Catalog — Hospitals](https:/
 **[View the data dictionary →](https://github.com/KabiraL/Hospital_Assessment_Databricks/blob/9e9ec77f594bcc481319414a84e8faca621f35a5/Data/Data%20Dictionary%20of%20Predictors.pdf)**
 
 
-<img width="900" alt="CMS data model" src="https://github.com/user-attachments/assets/bf6614d4-869b-47a1-8953-bfca8882b41e" />
+<img width="900" alt="CMS data model" src="https://github.com/KabiraL/Hospital_Assessment_Databricks/blob/7facaa4af08acb15961addb765f4dbff49c4f316/Data/TableStructure.png" />
 
 The seven CMS source datasets and the fields drawn from each.
 
