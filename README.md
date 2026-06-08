@@ -141,7 +141,7 @@ The seven CMS source datasets and the fields drawn from each.
 
 ### Issues
 
-There were data quality issues with 8 instances of Facility IDs having two completely different hospitals assigned to each Facility ID in the General hospital information dataset. This error was discovered late in the analysis, as the original Python code had automatically dropped the second Facility ID during analysis. The error was left unresolved owing to time constraints. Because so few hospitals were involved, I believe that the analyses are sound in spite of this error.
+There were data quality issues with 8 instances of Facility IDs having two completely different hospitals assigned to each Facility ID in the General hospital information dataset (~0.2% of hospitals). This error was discovered late in the analysis, as the original Python code had silently dropped the duplicate. At that scale the medians and model metrics don't move, so I chose to document the error and left the records as-is rather than re-run the analysis end-to-end.
 
 ### If there was more time ...
 
