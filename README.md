@@ -1,12 +1,21 @@
-# What makes a high-value hospital?
+# Which U.S. hospitals deliver better outcomes at lower cost, and why CMS star ratings miss 2 out of 5 of them.
+
+
+
+>Stack: SQL | Python (pandas, scikit-learn, statsmodels) | Databricks | Tableau  
+>Methods: outcome scoring | OLS & random forests | hypothesis testing | CMS star   benchmark  
+>Scope: 7 public CMS datasets | 2,306-hospital dataset  
+
+
+
 #### CMS star ratings don't tell the whole story. The best-value providers are efficient exceptions that star ratings may miss, and only the cost half of value can be reliably predicted.
 #### A Medicare hospital value analysis in SQL, Python, Databricks, and Tableau, scoring ~5,000 hospitals from 7 public CMS datasets to find which deliver higher outcomes at lower cost. The analysis also shows what, if anything, sets them apart. Mortality, readmission, safety, spending, effectiveness, and patient experience data were analyzed to identify high-value providers.
 
 <hr style="border:2px solid gray">
 
 ### The bottom line
-#### Question: Which U.S. hospitals deliver higher outcomes at low cost (their total cost of care), and what distinguishes them?
-#### Answer: Clinical outcomes and cost are only weakly linked. You may or may not see better outcomes when costs increase so the genuinely high-value hospitals (above-median outcomes at below-median cost) are off-trend exceptions. They can't be predicted from operational, patient-experience, or structural data because that data captures how a hospital is run more than how its patients fare. What **can** be predicted is cost on its own. A screening model flags likely low-cost hospitals with about 84% precision. The official CMS star ratings, which never factor in cost, miss roughly two in five high-value hospitals.
+#### Question: Which U.S. hospitals deliver higher outcomes at lower costs, and what distinguishes them?
+#### Answer: Clinical outcomes and cost are only weakly linked. You may or may not see better outcomes when costs increase so the genuinely high-value hospitals (above-median outcomes at below-median Medicare per-episode spending) are off-trend exceptions. They can't be predicted from operational, patient-experience, or structural data because that data captures how a hospital is run more than how its patients fare. What **can** be moderately predicted is cost on its own. A model yields ~ 84% precision on held-out data. The details are in the technical section below. The official CMS star ratings, which never factor in cost, miss roughly two in five high-value hospitals.
 
 <div align="center">
 <img width="900" alt="Outcome/Cost Scatterplot" src="https://github.com/KabiraL/Hospital_Assessment_Databricks/blob/33ea1d545e0c447129e1b62e0fe1ca48bc994701/Data/outcome_cost_scatter.png" />
@@ -16,10 +25,13 @@ Each dot is a hospital, plotted by clinical outcome and cost. The high-value gro
 
 ### What I found
 
-- In healthcare, higher cost doesn't necessarily mean better outcomes.  In fact, worse-ranked hospitals tend to have higher costs than better-ranked ones. Genuinely high-value hospitals (higher outcomes with lower cost) are exceptions that run against the grain.
+- In healthcare, higher cost doesn't necessarily mean better outcomes.  The two are only weakly, and slightly positively, linked. Genuinely high-value hospitals (higher outcomes with lower cost) are exceptions that run against the grain.
 - I found that cost is predictable. Clinical outcomes are not predictable from this data, however. Factors such as patient experience, ED efficiency, hospital size, and location explain cost moderately, but only weakly explain clinical outcomes. Two independent methods (linear regression and random forests) agree, which points to a real limitation of the data rather than issues with the statistical models. This makes sense. Patient experience, ED efficiency, size, and location measure how a hospital is run. And how a hospital is run is a weak predictor of how its patients fare.
 - With this data, a cost screen works, but a value screen can't. The tuned model identifies likely low-cost hospitals with ~84% precision on held-out data. This means the model is a usable operational tool, even though the high-value combination itself resists prediction.
-CMS star ratings capture patient experience and hospital operations but miss hidden value. Comparing to the official CMS 1–5 star ratings, this cost-aware model agrees with the ratings on ~70% of hospitals, as well as surfaces value the stars can't see. There are 216 high-value hospitals (about 2 in 5 of all high-value hospitals) which rated only 1–3 stars because the star system never weighs cost. Conversely, 61% of top-rated (4–5 star) hospitals don't meet the high value standard once cost is counted.
+CMS star ratings capture patient experience and hospital operations but miss hidden value.
+
+My outcome score is built from the same clinical measures the star rating relies on so stars and value largely agree on quality. The differences are almost entirely about cost, which is the single dimension from my analysis that stars structurally can’t see.
+There are 216 high-value hospitals (about 2 in 5 of all high-value hospitals) which rated only 1–3 stars because the star system never weighs cost. Conversely, 61% of top-rated (4–5 star) hospitals don't meet the high value standard once cost is counted.
 
 <div align="center">
 <img width="900" alt="Value/Star Matrix" src="https://github.com/KabiraL/Hospital_Assessment_Databricks/blob/9e9ec77f594bcc481319414a84e8faca621f35a5/Data/value_star_matrix.png" />
@@ -39,7 +51,7 @@ High-value hidden hospitals, mapped nationwide.
 Value tilts modestly by region and ownership, but variation within every group is large, so the map shows where to look, not a guarantee.
 
 ### Why it matters
-Healthcare affordability is a top domestic concern for Americans, and "value" (outcomes relative to total cost of care) is the metric payers, health systems, and care-coordination teams increasingly manage to. This analysis reframes that work. True high-value hospitals can't be inferred from price, patient reviews, or reputation, because none of those signals reliably tracks clinical quality, only clinical efficiency. Identifying high-value hospitals requires measuring outcomes directly. But the cost half of the equation can be screened quickly and reliably, and the hospitals that pair strong outcomes with low cost are precisely the efficient providers a value-conscious organization would overlook if it screened on star ratings alone.
+Healthcare affordability is a top domestic concern for Americans, and "value" (outcomes relative to cost) is the metric payers, health systems, and care-coordination teams increasingly manage to. This analysis reframes that work. True high-value hospitals can't be inferred from price, patient reviews, or reputation, because none of those signals reliably tracks clinical quality, only clinical efficiency. Identifying high-value hospitals requires measuring outcomes directly. But the cost half of the equation can be screened quickly and reliably, and the hospitals that pair strong outcomes with low cost are precisely the efficient providers a value-conscious organization would overlook if it screened on star ratings alone. This analysis uses Medicare spending per episode (a subset of MSPB) as the cost lens because it is a fast, risk-adjusted proxy, though it is a narrower measure than full total cost of care.
 
 Readers can look up any hospital on Medicare's official consumer tool, [Care Compare](https://www.medicare.gov/care-compare/). This provides a comprehensive list of hospitals with their overall star ratings and patient survey results.
 
@@ -50,7 +62,7 @@ Full methodology and model diagnostics are in the notebooks below.
 ### How I built it
 The analysis runs in two notebooks:
 
-1. Hospital_Scoring.ipynb contains data cleaning, the clinical-outcome scoring system, and exploratory analysis. Every hospital is scored on the same 26 outcome measures CMS uses in its star ratings (mortality, readmissions, and safety). These were standardized and combined into a single Outcomes score. That score is paired with Per-Episode Cost (Medicare spending per care episode) and split at the medians into four value tiers.
+1. Hospital_Scoring.ipynb contains data cleaning, the clinical-outcome scoring system, and exploratory analysis. Every hospital is scored on the same 26 risk-adjusted outcome measures CMS uses in its star ratings (mortality, readmissions, and safety). These were standardized and combined into a single Outcomes score. That score is paired with Per-Episode Cost (risk-adjusted Medicare spending per care episode from MSPB) and split at the medians into four value tiers. There are 2,306 hospitals in this completed dataset.
 2. Hospital_Analysis.ipynb contains the statistical work, including an independent-samples t-test, one-way ANOVA with Tukey comparisons, two linear regressions (modeling outcomes and cost), correlations, the random-forest models for high value and cost, and the comparison against CMS star ratings.
 
 A deliberate design choice I made was scoring outcomes on clinical measures only (mortality, readmissions, and safety) and leaving out the patient-experience and broader availability measures CMS folds into its stars. This is exactly the reason this lens diverges from the star ratings in interpretable ways.
