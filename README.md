@@ -9,7 +9,7 @@
 #### Answer: Clinical outcomes and cost are only weakly linked. You may or may not see better outcomes when costs increase so the genuinely high-value hospitals (above-median outcomes at below-median cost) are off-trend exceptions. They can't be predicted from operational, patient-experience, or structural data because that data captures how a hospital is run more than how its patients fare. What **can** be predicted is cost on its own. A screening model flags likely low-cost hospitals with about 84% precision. The official CMS star ratings, which never factor in cost, miss roughly two in five high-value hospitals.
 
 <div align="center">
-<img width="900" alt="Outcome/Cost Scatterplot" src="https://github.com/KabiraL/Hospital_Assessment_Databricks/blob/9e9ec77f594bcc481319414a84e8faca621f35a5/Data/outcome_cost_scatter.png" />
+<img width="900" alt="Outcome/Cost Scatterplot" src="https://github.com/KabiraL/Hospital_Assessment_Databricks/blob/33ea1d545e0c447129e1b62e0fe1ca48bc994701/Data/outcome_cost_scatter.png" />
 </div>
 
 Each dot is a hospital, plotted by clinical outcome and cost. The high-value group (higher outcomes at lower cost in the lower right) is the one we are concerned about.
