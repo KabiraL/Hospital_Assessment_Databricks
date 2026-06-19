@@ -45,7 +45,7 @@ There are 216 high-value hospitals (about 2 in 5 of all high-value hospitals) wh
 
 High-value hidden hospitals, mapped nationwide.
 
-**[See more about high-value hospitals on Tableau Public →](https://public.tableau.com/app/profile/leah.kabira/viz/HiddenValueHospitals/HighandLowOutcomes))**
+**[See more about high-value hospitals on Tableau Public →](https://public.tableau.com/app/profile/leah.kabira/viz/HiddenValueHospitals/HiddenValueandStandouts)**
 
 Value tilts modestly by region and ownership, but variation within every group is large, so the map shows where to look, not a guarantee.
 
